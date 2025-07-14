@@ -1,0 +1,52 @@
+# Dependências
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Arquivos de build
+.next/
+dist/
+build/
+
+# Arquivos de configuração local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+logs/
+
+# Banco de dados
+*.db
+*.sqlite
+
+# Uploads
+uploads/
+*.stl
+*.obj
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Outros
+*.tmp
+*.temp
