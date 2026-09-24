@@ -1,145 +1,97 @@
-# ForjaJ - E-commerce de Impressões 3D
+# ForjaJ
 
-Sistema completo de e-commerce para venda de impressões 3D com área administrativa e sistema de orçamentos personalizados.
+> Full-stack e-commerce platform for 3D-printed products and custom manufacturing requests.
 
-## 🚀 Funcionalidades
+**Next.js · TypeScript · Python · Flask · PostgreSQL · Mercado Pago · Docker**
 
-### Área Pública
-- ✅ Página inicial com produtos em destaque
-- ✅ Catálogo de produtos com filtros por categoria
-- ✅ Detalhes do produto com galeria de imagens
-- ✅ Carrinho de compras com edição de quantidades
-- ✅ Sistema de checkout integrado com Mercado Pago
-- ✅ Solicitação de orçamentos personalizados com upload de arquivos
-- ✅ Páginas institucionais (Sobre, Contato)
+| | |
+|---|---|
+| **Type** | Full-stack commerce platform |
+| **Domain** | E-commerce / Digital manufacturing |
+| **Focus** | Catalog, checkout, custom quotations and operations |
+| **Status** | Public technical project |
 
-### Área do Cliente
-- ✅ Cadastro e login de usuários
-- ✅ Área "Meus Pedidos" para acompanhamento
-- ✅ Perfil do usuário editável
+## Overview
 
-### Área Administrativa
-- ✅ Dashboard administrativo
-- ✅ Gerenciamento completo de produtos (CRUD)
-- ✅ Visualização e controle de pedidos
-- ✅ Gerenciamento de orçamentos personalizados
-- ✅ Sistema de autenticação para administradores
+ForjaJ combines conventional e-commerce workflows with a second path specific to digital manufacturing: customers can request custom quotations and submit files for products that are not part of the standard catalog.
 
-## 🛠️ Tecnologias
+## Architecture
 
-### Backend
-- **Python 3.9+** com Flask
-- **PostgreSQL** como banco de dados
-- **JWT** para autenticação
-- **Mercado Pago SDK** para pagamentos
-- **Flask-Mail** para envio de emails
+```text
+Customer / Admin
+       │
+       ▼
+ Next.js Frontend
+       │
+       ▼
+   Flask API
+  ┌────┼─────────┐
+  │    │         │
+Catalog Orders  Quotes
+  │    │         │
+  └────┼─────────┘
+       ▼
+  PostgreSQL
+       │
+       └────► Mercado Pago
+```
+
+## Capabilities
+
+- Product catalog and filtering.
+- Product detail and cart workflows.
+- Checkout and payment-provider integration.
+- Customer registration and authentication.
+- Order tracking.
+- Custom quotation requests with file uploads.
+- Administrative product, order and quotation management.
+- Responsive web experience.
+
+## Stack
 
 ### Frontend
-- **Next.js 14** com TypeScript
-- **Tailwind CSS** para estilização
-- **Axios** para requisições HTTP
-- **React Hook Form** para formulários
-- **React Hot Toast** para notificações
+`Next.js 14` · `TypeScript` · `Tailwind CSS` · `React Hook Form`
 
-## 📦 Instalação
+### Backend
+`Python` · `Flask` · `PostgreSQL` · `JWT` · `Mercado Pago SDK`
 
-### 1. Clonar o repositório
+## Local setup
+
 ```bash
-git clone https://github.com/seu-usuario/forjaj.git
+git clone https://github.com/jdrpires/forjaj.git
 cd forjaj
-```
 
-### 2. Configurar o banco de dados
-```bash
+# Database
 cd database
 docker-compose up -d
-```
 
-### 3. Configurar o backend
-```bash
-cd backend
+# Backend
+cd ../backend
 pip install -r requirements.txt
 cp .env.example .env
-# Editar o arquivo .env com suas configurações
 python app.py
-```
 
-### 4. Configurar o frontend
-```bash
-cd frontend
+# Frontend
+cd ../frontend
 npm install
 npm run dev
 ```
 
-## ⚙️ Configuração
+All credentials, JWT secrets, SMTP passwords and payment-provider tokens must be supplied through local environment variables.
 
-### Variáveis de Ambiente (Backend)
-```env
-DATABASE_URL=postgresql://forjaj_user:forjaj_password@localhost:5432/forjaj_db
-JWT_SECRET_KEY=seu-jwt-secret-key
-MAIL_SERVER=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=seu-email@gmail.com
-MAIL_PASSWORD=sua-senha-de-app
-MERCADOPAGO_ACCESS_TOKEN=seu-token-mercadopago
-UPLOAD_FOLDER=uploads
-```
+## Security notes
 
-### Configuração do Mercado Pago
-1. Criar conta no [Mercado Pago Developers](https://www.mercadopago.com.br/developers)
-2. Obter o Access Token de produção/teste
-3. Configurar webhook para receber notificações de pagamento
+- Never ship default administrative credentials.
+- Rotate all secrets before deployment.
+- Validate uploaded files before storage or processing.
+- Verify payment notifications server-side.
+- Restrict upload size and accepted file types.
+- Keep payment-provider credentials outside source control.
 
-## 📁 Estrutura do Projeto
+## Why this project is public
 
-```
-forjaj/
-├── backend/
-│   ├── app/
-│   │   ├── models/          # Modelos do banco de dados
-│   │   ├── routes/          # Rotas da API
-│   │   └── services/        # Lógica de negócio
-│   ├── config/              # Configurações
-│   └── app.py              # Aplicação principal
-├── frontend/
-│   ├── src/
-│   │   ├── app/            # Páginas Next.js
-│   │   ├── components/     # Componentes React
-│   │   ├── context/        # Contextos React
-│   │   └── styles/         # Estilos CSS
-│   └── package.json
-├── database/
-│   ├── init.sql            # Script de inicialização
-│   └── docker-compose.yml  # Configuração PostgreSQL
-└── README.md
-```
+ForjaJ demonstrates end-to-end product engineering across frontend, backend, payments, persistence and operational workflows, including a domain-specific custom-quotation process.
 
-## 🔐 Usuário Administrador Padrão
+---
 
-- **Email:** admin@forjaj.com.br
-- **Senha:** admin123 (alterar após primeiro login)
-
-## 📱 Responsividade
-
-O sistema é totalmente responsivo, funcionando perfeitamente em:
-- 📱 Dispositivos móveis
-- 📱 Tablets
-- 💻 Desktops
-
-## 🎨 Design
-
-Interface moderna e intuitiva com:
-- Design limpo e profissional
-- Cores consistentes com a marca
-- Navegação intuitiva
-- Feedback visual para ações do usuário
-
-## 📧 Contato
-
-Para dúvidas ou suporte:
-- **Email:** contato@forjaj.com.br
-- **Telefone:** (11) 99999-9999
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+**Jean Pires** · [GitHub](https://github.com/jdrpires) · [Portfolio](https://github.com/jdrpires/jdrpires)
